@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import FormStepOne from "./FormSteps/FormStepOne";
 import FormStepTwo from "./FormSteps/FormStepTwo";
+import FormStepThree from "./FormSteps/FormStepThree";
 
 function FormMainView() {
 	return (
 		<StyledFormMainView>
 			<div className="main-form">
-				<FormStepTwo />
+				<FormStepThree />
 			</div>
 			<div className="main-navigation">
 				<button className="back-button">Go Back</button>

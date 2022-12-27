@@ -31,7 +31,7 @@ const initialPlans = [
 
 const fadeInAnimation = keyframes`${fadeIn}`;
 
-function FormStepTwo() {
+function FormStepThree() {
 	const [switchActivate, setSwitchActivate] = useState(false);
 	const [plans, setPlans] = useState(initialPlans);
 
@@ -52,10 +52,10 @@ function FormStepTwo() {
 	};
 
 	return (
-		<StyledFormStepOne>
-			<h1>Select Plan</h1>
+		<StyledFormStepThree>
+			<h1>Pick add-ons</h1>
 			<p className="subtitle">
-				You have the option of monthly or yearly billing.
+				Add-ons help enhance your gaming experience.
 			</p>
 
 			<div className="plans">
@@ -100,11 +100,11 @@ function FormStepTwo() {
 					Yearly
 				</p>
 			</div>
-		</StyledFormStepOne>
+		</StyledFormStepThree>
 	);
 }
 
-const StyledFormStepOne = styled.div`
+const StyledFormStepThree = styled.div`
 	height: 100%;
 
 	h1 {
@@ -271,4 +271,4 @@ const StyledFormStepOne = styled.div`
 	}
 `;
 
-export default FormStepTwo;
+export default FormStepThree;
