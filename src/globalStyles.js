@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+:root {
+    --titanic: #1e90ff
+}
+
 * {
     margin: 0;
     padding: 0;
