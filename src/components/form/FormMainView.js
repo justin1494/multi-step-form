@@ -1,18 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import FormStepOne from "./FormSteps/FormStepOne";
 import FormStepTwo from "./FormSteps/FormStepTwo";
 import FormStepThree from "./FormSteps/FormStepThree";
 
-function FormMainView() {
+const formSteps = [<FormStepOne />, <FormStepTwo />, <FormStepThree />];
+
+function FormMainView({ formStep, setFormStep }) {
+	const handleFormStepIncrease = () => {
+		if (formStep === 2) {
+			setFormStep(2);
+		} else {
+			setFormStep(formStep + 1);
+		}
+	};
+
+	const handleFormStepDecrease = () => {
+		if (formStep === 0) {
+			setFormStep(0);
+		} else {
+			setFormStep(formStep - 1);
+		}
+	};
+
 	return (
 		<StyledFormMainView>
-			<div className="main-form">
-				<FormStepThree />
-			</div>
+			<div className="main-form">{formSteps[formStep]}</div>
 			<div className="main-navigation">
-				<button className="back-button">Go Back</button>
-				<button className="next-button">Next Step</button>
+				{formStep > 0 && (
+					<button
+						className="back-button"
+						onClick={handleFormStepDecrease}>
+						Go Back
+					</button>
+				)}
+				{formStep !== 2 && (
+					<button
+						className="next-button"
+						onClick={handleFormStepIncrease}>
+						Next Step
+					</button>
+				)}
 			</div>
 		</StyledFormMainView>
 	);
@@ -51,12 +79,13 @@ const StyledFormMainView = styled.div`
 			width: auto;
 			background: none;
 			color: hsl(231, 11%, 63%);
-			
 		}
 		.next-button {
+			margin-left: auto;
 			background-color: hsl(213, 96%, 18%);
 			color: hsl(229, 24%, 87%);
-            :hover {
+
+			:hover {
 				background-color: hsl(214, 72%, 32%);
 			}
 		}

@@ -1,13 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import FormSidebar from "./FormSidebar";
 import FormMainView from "./FormMainView";
 
 function FormOutline() {
+	const [formStep, setFormStep] = useState(0);
 	return (
 		<StyledFromOutline>
-			<FormSidebar />
-			<FormMainView />
+			<FormSidebar formStep={formStep}/>
+			<FormMainView formStep={formStep} setFormStep={setFormStep}/>
 		</StyledFromOutline>
 	);
 }

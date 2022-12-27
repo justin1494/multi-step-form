@@ -3,14 +3,13 @@ import styled from "styled-components";
 import sidebarBackgroundDesktop from "../../assets/images/bg-sidebar-desktop.svg";
 import sidebarBackgroundMobile from "../../assets/images/bg-sidebar-mobile.svg";
 
-function FormSidebar() {
-	const steps = [
-		{ number: 1, step: "Step 1", description: "Your info"},
-		{ number: 2, step: "Step 2", description: "Select plan"},
-		{ number: 3, step: "Step 3", description: "Add-ons"},
-		{ number: 4, step: "Step 4", description: "Summary"},
-	];
-
+const steps = [
+	{ number: 1, step: "Step 1", description: "Your info" },
+	{ number: 2, step: "Step 2", description: "Select plan" },
+	{ number: 3, step: "Step 3", description: "Add-ons" },
+	{ number: 4, step: "Step 4", description: "Summary" },
+];
+function FormSidebar({ formStep }) {
 	return (
 		<StyledSidebar>
 			{steps.map((step) => (

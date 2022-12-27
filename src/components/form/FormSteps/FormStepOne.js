@@ -29,7 +29,7 @@ function FormStepOne() {
 			<p>Please provide your name, email address, and phone number.</p>
 			{inputs.map((input) => (
 				<div className="input">
-					<label for={input.name}>{input.label}</label>
+					<label htmlFor={input.name}>{input.label}</label>
 					<p className="required">This field is required</p>
 					<input
 						id={input.name}
