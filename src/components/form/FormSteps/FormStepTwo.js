@@ -68,7 +68,6 @@ function FormStepTwo() {
 						onClick={() => {
 							handlePlanSelect(plan.id);
 						}}>
-						{console.log(plan.selected)}
 						<div className="plan-img">{plan.img}</div>
 						<div className="plan-description">
 							<div className="plan-title">{plan.title}</div>

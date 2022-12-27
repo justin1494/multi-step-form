@@ -1,30 +1,29 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { ReactComponent as IconArcade } from "../../../assets/images/icon-arcade.svg";
-import { ReactComponent as IconAdvanced } from "../../../assets/images/icon-advanced.svg";
-import { ReactComponent as IconPro } from "../../../assets/images/icon-pro.svg";
+import checkboxTick from "../../../assets/images/icon-checkmark.svg";
 import { fadeIn } from "react-animations";
 
-const initialPlans = [
+
+const initilaAddons = [
 	{
 		id: 0,
-		title: "Arcade",
-		price: "$9/",
-		img: <IconArcade />,
+		title: "Online service",
+		subtitle: "Access to multiplayer games",
+		price: "+$1/",
 		selected: false,
 	},
 	{
 		id: 1,
-		title: "Advanced",
-		price: "$12/",
-		img: <IconAdvanced />,
+		title: "Larger storage",
+		subtitle: "Extra 1TB of cloud save",
+		price: "+$2/",
 		selected: false,
 	},
 	{
 		id: 2,
-		title: "Pro",
-		price: "$15/",
-		img: <IconPro />,
+		title: "Customizable Profile",
+		subtitle: "Custom theme on your profile",
+		price: "+$2/",
 		selected: false,
 	},
 ];
@@ -32,23 +31,20 @@ const initialPlans = [
 const fadeInAnimation = keyframes`${fadeIn}`;
 
 function FormStepThree() {
-	const [switchActivate, setSwitchActivate] = useState(false);
-	const [plans, setPlans] = useState(initialPlans);
+	const [addons, setAddons] = useState(initilaAddons);
 
-
-	const handlePlanSelect = (planId) => {
-		setPlans(
-			plans.map((plan) => {
-				if (plan.id === planId) {
-					return { ...plan, selected: true };
+	const handleAddonSelect = (addonId) => {
+		setAddons(
+			addons.map((addon) => {
+				if (addon.id === addonId) {
+					if (addon.selected) {
+						return { ...addon, selected: false };
+					}
+					return { ...addon, selected: true };
 				}
-				return { ...plan, selected: false };
+				return { ...addon };
 			})
 		);
-	};
-
-	const handleSwitch = () => {
-		setSwitchActivate(!switchActivate);
 	};
 
 	return (
@@ -58,47 +54,27 @@ function FormStepThree() {
 				Add-ons help enhance your gaming experience.
 			</p>
 
-			<div className="plans">
-				{plans.map((plan, i) => (
+			<div className="addons">
+				{addons.map((addon) => (
 					<div
-						key={i}
-						className={`plan ${plan.selected && "selected"} ${
-							switchActivate && "plan-animate"
-						}`}
+						className={`addon ${addon.selected && "selected"}`}
 						onClick={() => {
-							handlePlanSelect(plan.id);
+							handleAddonSelect(addon.id);
 						}}>
-						{console.log(plan.selected)}
-						<div className="plan-img">{plan.img}</div>
-						<div className="plan-description">
-							<div className="plan-title">{plan.title}</div>
-							<div className="plan-price">{`${
-								plan.price
-							}${switchActivate ? "yr" : "mo"}`}</div>
-							{switchActivate && (
-								<div className="plan-yearly">
-									2 months free
-								</div>
+						<div className="checkbox">
+							{addon.selected && (
+								<img src={checkboxTick} alt="checkbox tick" />
 							)}
 						</div>
+						<div className="addon-name">
+							<div className="addon-title">{addon.title}</div>
+							<div className="addon-subtitle">
+								{addon.subtitle}
+							</div>
+						</div>
+						<div className="addon-price">{addon.price}</div>
 					</div>
 				))}
-			</div>
-			<div className="plan-length">
-				<p className={`monthly ${!switchActivate && "activated"}`}>
-					Monthly
-				</p>
-				<div className="switch" onClick={handleSwitch}>
-					<div
-						className={
-							switchActivate
-								? "switch-ball switch-ball-activate"
-								: "switch-ball"
-						}></div>
-				</div>
-				<p className={`yearly ${switchActivate && "activated"}`}>
-					Yearly
-				</p>
 			</div>
 		</StyledFormStepThree>
 	);
@@ -118,155 +94,78 @@ const StyledFormStepThree = styled.div`
 		font-weight: 400;
 	}
 
-	.plans {
+	.addons {
+		width: 100%;
 		display: flex;
-		justify-content: space-between;
+		flex-direction: column;
+		gap: 1rem;
+	}
 
-		.plan {
-			height: 180px;
-			width: 30%;
-			display: flex;
-			justify-content: space-between;
-			flex-direction: column;
-			padding: 1rem;
-			border-radius: 0.5rem;
-			border: 1px solid hsl(229, 24%, 87%);
-			cursor: pointer;
+	.addon {
+		width: 100%;
+		height: 80px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		border-radius: 0.5rem;
+		border: 1px solid hsl(229, 24%, 87%);
+		cursor: pointer;
 
-			:hover {
-				border: 1px solid hsl(213, 96%, 18%);
-			}
-		}
-		.selected {
-			background-color: hsl(217, 100%, 97%);
+		:hover {
 			border: 1px solid hsl(213, 96%, 18%);
 		}
 	}
 
-	.plan-img {
-		margin-bottom: 2rem;
+	.selected {
+		background-color: hsl(217, 100%, 97%);
+		border: 1px solid hsl(213, 96%, 18%);
 	}
 
-	.plan-title {
+	.checkbox {
+		aspect-ratio: 1/1;
+		height: 20px;
+		margin: 0 2rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 0.2rem;
+		background-color: hsl(244, 100%, 63%);
+
+		img {
+			animation: 0.3s ${fadeInAnimation};
+		}
+	}
+
+	.addon-title {
 		margin-bottom: 0.2rem;
 		color: hsl(213, 96%, 18%);
 		font-weight: 500;
 		font-size: 17px;
 	}
-
-	.plan-price {
+	.addon-subtitle {
 		color: hsl(231, 11%, 63%);
-		margin: 0.5rem 0;
 	}
-
-	.plan-yearly {
-		color: hsl(213, 96%, 18%);
-		letter-spacing: -0.5px;
+	.addon-price {
+		margin-left: auto;
+		margin-right: 2rem;
+		color: hsl(244, 43%, 61%);
 		font-weight: 500;
-		animation: 0.3s ${fadeInAnimation};
-	}
-
-	img {
-		width: 100px;
-		height: 100px;
-	}
-
-	.plan-length {
-		width: 100%;
-		height: 50px;
-		margin-top: 2rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 0.5rem;
-		background-color: hsl(217, 100%, 97%);
-
-		p {
-			display: flex;
-			align-items: center;
-			width: 100px;
-			margin: 0 1rem;
-			color: hsl(231, 11%, 63%);
-		}
-
-		.monthly {
-			justify-content: flex-end;
-		}
-		.activated {
-			font-weight: 500;
-			color: hsl(213, 96%, 18%) !important;
-			transition: color 0.3s;
-		}
-
-		.switch {
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-			width: 50px;
-			height: 50%;
-			border-radius: 50px;
-			background-color: hsl(213, 96%, 18%);
-			cursor: pointer;
-
-			.switch-ball {
-				height: 63%;
-				margin: 0 0.3rem;
-				aspect-ratio: 1/1;
-				border-radius: 50%;
-				background-color: #fff;
-				transition: all 0.5s;
-			}
-		}
-		.switch-ball-activate {
-			transform: translateX(25px);
-		}
 	}
 
 	@media (max-width: 640px) {
 		background-color: #fff;
-
 		p {
 			margin-bottom: 1rem;
 		}
-
-		.subtitle {
-			margin-bottom: 1rem;
-		}
-		.plans {
-			flex-direction: column;
-			gap: 0.5rem;
-
-			.plan {
-				height: 85px;
-				width: 100%;
-				justify-content: flex-start;
-				flex-direction: row;
-				gap: 1rem;
-
-				.plan-title,
-				.plan-price,
-				.plan-yearly {
-					font-size: 14px;
-				}
-				.plan-title {
-					margin-bottom: 0.1rem;
-				}
-
-				.plan-price {
-					margin: 0;
-				}
-
-				.plan-img {
-					margin-bottom: 0;
-				}
-				.plan-yearly {
-					margin-top: 0.1rem;
-				}
-			}
+		.addon {
+			font-size: 14px;
 		}
 
-		.plan-length {
-			margin-top: 1rem;
+		.checkbox {
+			margin: 0 1rem;
+		}
+		.addon-price {
+			margin-right: 1rem;
 		}
 	}
 `;
