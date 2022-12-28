@@ -1,9 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { ReactComponent as IconArcade } from "../../../assets/images/icon-arcade.svg";
 import { ReactComponent as IconAdvanced } from "../../../assets/images/icon-advanced.svg";
 import { ReactComponent as IconPro } from "../../../assets/images/icon-pro.svg";
-import { fadeIn } from "react-animations";
 
 const initialPlans = [
   {
@@ -37,6 +36,7 @@ const planYearlyAnimate = keyframes`
 	opacity: 1;
 	height: 100px;
 }
+
 `;
 
 function FormStepTwo({ switchActivate, setSwitchActivate }) {
