@@ -30,16 +30,14 @@ const initialPlans = [
 ];
 const planYearlyAnimate = keyframes`
 0% {
-	clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+	opacity: 0;
+	height: 0;
 }
 100% {
-	
-	clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
-
+	opacity: 1;
+	height: 100px;
 }
 `;
-
-// const fadeInAnimation = keyframes`${fadeIn}`;
 
 function FormStepTwo({ switchActivate, setSwitchActivate }) {
   const [plans, setPlans] = useState(initialPlans);
@@ -166,7 +164,7 @@ const StyledFormStepOne = styled.div`
     color: hsl(213, 96%, 18%);
     letter-spacing: -0.5px;
     font-weight: 500;
-    animation: 0.3s ${planYearlyAnimate} ease-in-out;
+    animation: 1s ${planYearlyAnimate} ease-in-out;
   }
 
   img {
