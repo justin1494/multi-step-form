@@ -24,22 +24,10 @@ const initialInputs = [
 	},
 ];
 
-function FormStepOne() {
+function FormStepOne({inputRef, requiredRef, checkInputs}) {
 	const [inputs, setInputs] = useState(initialInputs);
 
-	const inputRef = useRef([]);
-	const requiredRef = useRef([]);
 
-	const checkInputs = () => {
-		requiredRef.current.forEach((warning) => {
-			warning.style.display = "none";
-		});
-		inputRef.current.forEach((input, index) => {
-			if (input.value === "") {
-				requiredRef.current[index].style.display = "block";
-			}
-		});
-	};
 
 	return (
 		<StyledFormStepOne>
