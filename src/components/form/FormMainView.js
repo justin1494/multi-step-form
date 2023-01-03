@@ -3,15 +3,27 @@ import styled from "styled-components";
 import FormStepOne from "./FormSteps/FormStepOne";
 import FormStepTwo from "./FormSteps/FormStepTwo";
 import FormStepThree from "./FormSteps/FormStepThree";
+import FormStepFour from "./FormSteps/FormStepFour";
 
 function FormMainView({ formStep, setFormStep }) {
-	const [switchActivate, setSwitchActivate] = useState(false);
+	const [yearly, setYearly] = useState(false);
 	const inputRef = useRef([]);
 	const requiredRef = useRef([]);
 
+	const [userInfo, setUserInfo] = useState({
+		name: null,
+		email: null,
+		phone: null,
+		plan: {
+			title: null,
+			price: null,
+		},
+		addons: [],
+	});
+
 	const handleFormStepIncrease = () => {
-		if (formStep === 2) {
-			setFormStep(2);
+		if (formStep === 3) {
+			setFormStep(3);
 		} else {
 			setFormStep(formStep + 1);
 		}
@@ -25,6 +37,15 @@ function FormMainView({ formStep, setFormStep }) {
 		}
 	};
 
+	const saveInputs = () => {
+		setUserInfo({
+			...userInfo,
+			name: inputRef.current[0].value,
+			email: inputRef.current[1].value,
+			phone: inputRef.current[2].value,
+		});
+	};
+
 	const checkInputs = () => {
 		let outcome = true;
 		requiredRef.current.forEach((warning) => {
@@ -36,6 +57,7 @@ function FormMainView({ formStep, setFormStep }) {
 				outcome = false;
 			}
 		});
+		saveInputs();
 		return outcome;
 	};
 
@@ -44,12 +66,24 @@ function FormMainView({ formStep, setFormStep }) {
 			inputRef={inputRef}
 			requiredRef={requiredRef}
 			checkInputs={checkInputs}
+			userInfo={userInfo}
 		/>,
 		<FormStepTwo
-			switchActivate={switchActivate}
-			setSwitchActivate={setSwitchActivate}
+			yearly={yearly}
+			setYearly={setYearly}
+			setUserInfo={setUserInfo}
+			userInfo={userInfo}
 		/>,
-		<FormStepThree switchActivate={switchActivate} />,
+		<FormStepThree
+			yearly={yearly}
+			setUserInfo={setUserInfo}
+			userInfo={userInfo}
+		/>,
+		<FormStepFour
+			yearly={yearly}
+			setFormStep={setFormStep}
+			userInfo={userInfo}
+		/>,
 	];
 
 	return (
@@ -63,13 +97,17 @@ function FormMainView({ formStep, setFormStep }) {
 						Go Back
 					</button>
 				)}
-				{formStep !== 2 && (
+				{formStep !== 4 && (
 					<button
 						className="next-button"
 						onClick={() => {
-							checkInputs() && handleFormStepIncrease();
+							if (formStep === 0) {
+								checkInputs() && handleFormStepIncrease();
+							} else {
+								handleFormStepIncrease();
+							}
 						}}>
-						Next Step
+						{formStep === 3 ? "Confirm" : "Next step"}
 					</button>
 				)}
 			</div>

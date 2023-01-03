@@ -1,7 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import produce from "immer";
-import { isJSXClosingElement } from "@babel/types";
 
 const initialInputs = [
 	{
@@ -9,25 +7,26 @@ const initialInputs = [
 		label: "Name",
 		placeholder: "e.g. Stephen King",
 		type: "text",
+		value: null,
 	},
 	{
 		name: "email",
 		label: "Email Address",
 		placeholder: "e.g. stephenking@lorem.com",
 		type: "email",
+		value: null,
 	},
 	{
 		name: "phone",
 		label: "Phone Number",
 		placeholder: "e.g. +1 234 567 890",
 		type: "tel",
+		value: null,
 	},
 ];
 
-function FormStepOne({inputRef, requiredRef, checkInputs}) {
+function FormStepOne({ inputRef, requiredRef, userInfo }) {
 	const [inputs, setInputs] = useState(initialInputs);
-
-
 
 	return (
 		<StyledFormStepOne>
@@ -49,10 +48,10 @@ function FormStepOne({inputRef, requiredRef, checkInputs}) {
 						type={input.type}
 						placeholder={input.placeholder}
 						ref={(element) => (inputRef.current[index] = element)}
+						defaultValue={Object.values(userInfo)[index]}
 					/>
 				</div>
 			))}
-			<button onClick={checkInputs}>check refs</button>
 		</StyledFormStepOne>
 	);
 }
