@@ -2,6 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 function FormStepFour({ yearly, setFormStep, userInfo }) {
+
+	let addonsPriceSum = 0
+
+	userInfo.addons.forEach(addon => {
+		addonsPriceSum += addon.price
+	});
+
+	const priceSum = userInfo.plan.price + addonsPriceSum
+
+	console.log(priceSum);
+	
+
 	return (
 		<StyledFormStepThree>
 			<h1>Finishing up</h1>
@@ -16,28 +28,26 @@ function FormStepFour({ yearly, setFormStep, userInfo }) {
 						}`}</div>
 						<button onClick={() => setFormStep(1)}>Change</button>
 					</div>
-					<div className="plan-price">{`${userInfo.plan.price}${
+					<div className="plan-price">{`$${userInfo.plan.price}${
 						yearly ? "0/yr" : "/mo"
 					}`}</div>
 				</div>
-				<div className="selected-addon">
-					<div className="addon-name">Online service</div>
-					<div className="addon-price">{`+$2${
-						yearly ? "0/yr" : "/mo"
-					}`}</div>
-				</div>
-				<div className="selected-addon">
-					<div className="addon-name">Online service</div>
-					<div className="addon-price">{`+$2${
-						yearly ? "0/yr" : "/mo"
-					}`}</div>
-				</div>
+				{userInfo.addons.map((addon) => {
+					return (
+						<div className="selected-addon">
+							<div className="addon-name">{addon.title}</div>
+							<div className="addon-price">{`+$${addon.price}${
+								yearly ? "0/yr" : "/mo"
+							}`}</div>
+						</div>
+					);
+				})}
 			</div>
 			<div className="summary">
 				<div className="summary-name">{`Total ${
 					yearly ? "(per year)" : "(per month)"
 				}`}</div>
-				<div className="summary-price">{`+$12${
+				<div className="summary-price">{`$${priceSum}${
 					yearly ? "0/yr" : "/mo"
 				}`}</div>
 			</div>

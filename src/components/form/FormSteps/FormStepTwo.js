@@ -8,21 +8,21 @@ const initialPlans = [
 	{
 		id: 0,
 		title: "Arcade",
-		price: "$9",
+		price: 9,
 		img: <IconArcade />,
 		selected: false,
 	},
 	{
 		id: 1,
 		title: "Advanced",
-		price: "$12",
+		price: 12,
 		img: <IconAdvanced />,
 		selected: false,
 	},
 	{
 		id: 2,
 		title: "Pro",
-		price: "$15",
+		price: 15,
 		img: <IconPro />,
 		selected: false,
 	},
@@ -97,7 +97,7 @@ function FormStepTwo({ yearly, setYearly, setUserInfo, userInfo }) {
 						<div className="plan-img">{plan.img}</div>
 						<div className="plan-description">
 							<div className="plan-title">{plan.title}</div>
-							<div className="plan-price">{`${plan.price}${
+							<div className="plan-price">{`$${plan.price}${
 								yearly ? "0/yr" : "/mo"
 							}`}</div>
 							{yearly && (

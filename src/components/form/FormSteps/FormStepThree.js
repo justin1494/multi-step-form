@@ -8,21 +8,21 @@ const initilaAddons = [
 		id: 0,
 		title: "Online service",
 		subtitle: "Access to multiplayer games",
-		price: "+$1",
+		price: 1,
 		selected: false,
 	},
 	{
 		id: 1,
 		title: "Larger storage",
 		subtitle: "Extra 1TB of cloud save",
-		price: "+$2",
+		price: 2,
 		selected: false,
 	},
 	{
 		id: 2,
 		title: "Customizable Profile",
 		subtitle: "Custom theme on your profile",
-		price: "+$2",
+		price: 2,
 		selected: false,
 	},
 ];
@@ -51,16 +51,28 @@ function FormStepThree({ yearly, setUserInfo, userInfo }) {
 
 		addons.forEach((addon) => {
 			if (addon.selected) {
-				selectedAddons = [...selectedAddons, addon.title];
+				selectedAddons = [
+					...selectedAddons,
+					{
+						title: addon.title,
+						price: addon.price,
+					},
+				];
 			}
 		});
 		setUserInfo({ ...userInfo, addons: selectedAddons });
+		console.log(userInfo);
 	};
 
 	useEffect(() => {
+		let userAddons = [];
+		userInfo.addons.forEach((element) => {
+			userAddons = [...userAddons, element.title];
+		});
+
 		setAddons(
 			addons.map((addon) => {
-				if (userInfo.addons.includes(addon.title)) {
+				if (userAddons.includes(addon.title)) {
 					return { ...addon, selected: true };
 				}
 				return { ...addon };
@@ -97,7 +109,7 @@ function FormStepThree({ yearly, setUserInfo, userInfo }) {
 								{addon.subtitle}
 							</div>
 						</div>
-						<div className="addon-price">{`${addon.price}${
+						<div className="addon-price">{`+$${addon.price}${
 							yearly ? "0/yr" : "/mo"
 						}`}</div>
 					</div>
