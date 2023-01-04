@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import FormStepOne from "./FormSteps/FormStepOne";
 import FormStepTwo from "./FormSteps/FormStepTwo";
@@ -10,6 +10,7 @@ function FormMainView({ formStep, setFormStep }) {
 	const [yearly, setYearly] = useState(false);
 	const inputRef = useRef([]);
 	const requiredRef = useRef([]);
+	const mainNavigationRef = useRef()
 
 	const [userInfo, setUserInfo] = useState({
 		name: null,
@@ -75,6 +76,14 @@ function FormMainView({ formStep, setFormStep }) {
 		return false;
 	};
 
+	useEffect(() => {
+	  if (formStep === formSteps.length - 1) {
+		mainNavigationRef.current.style.display = 'none'
+		console.log('nie widac')
+	  }
+	})
+	
+
 	const formSteps = [
 		<FormStepOne
 			inputRef={inputRef}
@@ -104,7 +113,7 @@ function FormMainView({ formStep, setFormStep }) {
 	return (
 		<StyledFormMainView>
 			<div className="main-form">{formSteps[formStep]}</div>
-			<div className="main-navigation">
+			<div className="main-navigation" ref={mainNavigationRef}>
 				{formStep > 0 && formStep < formSteps.length - 1 && (
 					<button
 						className="back-button"

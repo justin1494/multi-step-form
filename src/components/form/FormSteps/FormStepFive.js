@@ -20,7 +20,7 @@ const StyledFormStepFive = styled.div`
 	height: 100%;
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: center;
 	flex-direction: column;
 
 	.icon {
@@ -40,9 +40,6 @@ const StyledFormStepFive = styled.div`
 		line-height: 1.5rem;
 	}
 
-	@media (max-width: 640px) {
-		justify-content: center;
-	}
 `;
 
 export default FormStepFive;

@@ -10,8 +10,6 @@ function FormStepFour({ yearly, setFormStep, userInfo }) {
 	});
 
 	const priceSum = userInfo.plan.price + addonsPriceSum
-
-	console.log(priceSum);
 	
 
 	return (
