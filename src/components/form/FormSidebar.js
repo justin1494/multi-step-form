@@ -3,6 +3,7 @@ import styled from "styled-components";
 import sidebarBackgroundDesktop from "../../assets/images/bg-sidebar-desktop.svg";
 import sidebarBackgroundMobile from "../../assets/images/bg-sidebar-mobile.svg";
 
+
 const steps = [
 	{
 		id: 0,
@@ -25,7 +26,7 @@ function FormSidebar({ formStep }) {
 	return (
 		<StyledSidebar>
 			{steps.map((step, index) => (
-				<div className="form-steps">
+				<div className="form-steps" key={step.id}>
 					<div className={`number ${index === formStep && "active"}`}>
 						{step.number}
 					</div>

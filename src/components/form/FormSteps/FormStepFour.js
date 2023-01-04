@@ -1,19 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-function FormStepFour({ yearly, setFormStep, userInfo }) {
+function FormStepFour({ yearly, setFormStep, userInfo}) {
+	let addonsPriceSum = 0;
 
-	let addonsPriceSum = 0
-
-	userInfo.addons.forEach(addon => {
-		addonsPriceSum += addon.price
+	userInfo.addons.forEach((addon) => {
+		addonsPriceSum += addon.price;
 	});
 
-	const priceSum = userInfo.plan.price + addonsPriceSum
-	
+	const priceSum = userInfo.plan.price + addonsPriceSum;
 
 	return (
-		<StyledFormStepThree>
+		<StyledFormStepFour>
 			<h1>Finishing up</h1>
 			<p className="subtitle">
 				Double-check everything looks OK before confirming.
@@ -49,11 +47,11 @@ function FormStepFour({ yearly, setFormStep, userInfo }) {
 					yearly ? "0/yr" : "/mo"
 				}`}</div>
 			</div>
-		</StyledFormStepThree>
+		</StyledFormStepFour>
 	);
 }
 
-const StyledFormStepThree = styled.div`
+const StyledFormStepFour = styled.div`
 	height: 100%;
 
 	h1 {

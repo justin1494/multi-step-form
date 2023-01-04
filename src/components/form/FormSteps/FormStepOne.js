@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const initialInputs = [
 	{
+		id: 1,
 		name: "name",
 		label: "Name",
 		placeholder: "e.g. Stephen King",
@@ -10,6 +11,7 @@ const initialInputs = [
 		value: null,
 	},
 	{
+		id: 2,
 		name: "email",
 		label: "Email Address",
 		placeholder: "e.g. stephenking@lorem.com",
@@ -17,6 +19,7 @@ const initialInputs = [
 		value: null,
 	},
 	{
+		id: 3,
 		name: "phone",
 		label: "Phone Number",
 		placeholder: "e.g. +1 234 567 890",
@@ -35,7 +38,7 @@ function FormStepOne({ inputRef, requiredRef, userInfo }) {
 			<h1>Personal info</h1>
 			<p>Please provide your name, email address, and phone number.</p>
 			{inputs.map((input, index) => (
-				<div className="input">
+				<div className="input" key={input.id}>
 					<label htmlFor={input.name}>{input.label}</label>
 					<p
 						className="required"

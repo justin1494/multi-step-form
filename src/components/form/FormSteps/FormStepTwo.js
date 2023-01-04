@@ -39,12 +39,7 @@ const planYearlyAnimate = keyframes`
 
 `;
 
-function FormStepTwo({
-	yearly,
-	setYearly,
-	setUserInfo,
-	userInfo,
-}) {
+function FormStepTwo({ yearly, setYearly, setUserInfo, userInfo }) {
 	const [plans, setPlans] = useState(initialPlans);
 
 	const checkIfSelected = () => {
@@ -53,7 +48,7 @@ function FormStepTwo({
 				if (plan.title === userInfo.plan.title) {
 					return { ...plan, selected: true };
 				}
-				return { ...plan, selected: false};
+				return { ...plan, selected: false };
 			})
 		);
 		return;
@@ -83,7 +78,7 @@ function FormStepTwo({
 	};
 
 	return (
-		<StyledFormStepOne>
+		<StyledFormStepTwo>
 			<h1>Select Plan</h1>
 			<p className="subtitle">
 				You have the option of monthly or yearly billing.
@@ -93,8 +88,8 @@ function FormStepTwo({
 				{plans.map((plan, i) => (
 					<div
 						key={i}
-						className={`plan ${plan.selected && "selected"} ${
-							yearly && "plan-animate"
+						className={`plan ${plan.selected ? "selected" : ""} ${
+							yearly ? "plan-animate" : ""
 						}`}
 						onClick={() => {
 							handlePlanSelect(plan.id);
@@ -124,11 +119,11 @@ function FormStepTwo({
 				</div>
 				<p className={`yearly ${yearly && "activated"}`}>Yearly</p>
 			</div>
-		</StyledFormStepOne>
+		</StyledFormStepTwo>
 	);
 }
 
-const StyledFormStepOne = styled.div`
+const StyledFormStepTwo = styled.div`
 	height: 100%;
 
 	h1 {

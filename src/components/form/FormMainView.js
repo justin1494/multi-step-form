@@ -79,7 +79,6 @@ function FormMainView({ formStep, setFormStep }) {
 	useEffect(() => {
 	  if (formStep === formSteps.length - 1) {
 		mainNavigationRef.current.style.display = 'none'
-		console.log('nie widac')
 	  }
 	})
 	

@@ -93,10 +93,11 @@ function FormStepThree({ yearly, setUserInfo, userInfo }) {
 			<div className="addons">
 				{addons.map((addon) => (
 					<div
-						className={`addon ${addon.selected && "selected"}`}
+						className={`addon ${addon.selected ? "selected" : ""}`}
 						onClick={() => {
 							handleAddonSelect(addon.id);
-						}}>
+						}}
+						key={addon.id}>
 						<div className="checkbox">
 							{addon.selected && (
 								<img src={checkboxTick} alt="checkbox tick" />
