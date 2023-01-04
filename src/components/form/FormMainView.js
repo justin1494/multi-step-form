@@ -4,6 +4,7 @@ import FormStepOne from "./FormSteps/FormStepOne";
 import FormStepTwo from "./FormSteps/FormStepTwo";
 import FormStepThree from "./FormSteps/FormStepThree";
 import FormStepFour from "./FormSteps/FormStepFour";
+import FormStepFive from "./FormSteps/FormStepFive";
 
 function FormMainView({ formStep, setFormStep }) {
 	const [yearly, setYearly] = useState(false);
@@ -15,15 +16,15 @@ function FormMainView({ formStep, setFormStep }) {
 		email: null,
 		phone: null,
 		plan: {
-			title: null,
-			price: null,
+			title: "Arcade",
+			price: 9,
 		},
 		addons: [],
 	});
 
 	const handleFormStepIncrease = () => {
-		if (formStep === 3) {
-			setFormStep(3);
+		if (formStep === 4) {
+			setFormStep(4);
 		} else {
 			setFormStep(formStep + 1);
 		}
@@ -61,6 +62,19 @@ function FormMainView({ formStep, setFormStep }) {
 		return outcome;
 	};
 
+	const validateEmail = () => {
+		if (
+			/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+				inputRef.current[1].value
+			)
+		) {
+			return true;
+		}
+		requiredRef.current[1].innerText = "Enter a valid e-mail";
+		requiredRef.current[1].style.display = "block";
+		return false;
+	};
+
 	const formSteps = [
 		<FormStepOne
 			inputRef={inputRef}
@@ -84,13 +98,14 @@ function FormMainView({ formStep, setFormStep }) {
 			setFormStep={setFormStep}
 			userInfo={userInfo}
 		/>,
+		<FormStepFive />,
 	];
 
 	return (
 		<StyledFormMainView>
 			<div className="main-form">{formSteps[formStep]}</div>
 			<div className="main-navigation">
-				{formStep > 0 && (
+				{formStep > 0 && formStep < formSteps.length - 1 && (
 					<button
 						className="back-button"
 						onClick={handleFormStepDecrease}>
@@ -102,7 +117,9 @@ function FormMainView({ formStep, setFormStep }) {
 						className="next-button"
 						onClick={() => {
 							if (formStep === 0) {
-								checkInputs() && handleFormStepIncrease();
+								checkInputs() &&
+									validateEmail() &&
+									handleFormStepIncrease();
 							} else {
 								handleFormStepIncrease();
 							}
@@ -143,6 +160,10 @@ const StyledFormMainView = styled.div`
 			font-size: 16px;
 			font-weight: 700;
 			cursor: pointer;
+
+			:disabled {
+				background-color: grey;
+			}
 		}
 		.back-button {
 			width: auto;

@@ -61,7 +61,6 @@ function FormStepThree({ yearly, setUserInfo, userInfo }) {
 			}
 		});
 		setUserInfo({ ...userInfo, addons: selectedAddons });
-		console.log(userInfo);
 	};
 
 	useEffect(() => {

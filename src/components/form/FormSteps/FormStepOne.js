@@ -28,6 +28,8 @@ const initialInputs = [
 function FormStepOne({ inputRef, requiredRef, userInfo }) {
 	const [inputs, setInputs] = useState(initialInputs);
 
+
+
 	return (
 		<StyledFormStepOne>
 			<h1>Personal info</h1>

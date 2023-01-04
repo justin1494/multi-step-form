@@ -89,7 +89,7 @@ const StyledFormStepThree = styled.div`
 		padding-bottom: 1.5rem;
 		margin-bottom: 1rem;
 		font-weight: 700;
-		border-bottom: 2px black solid;
+		border-bottom: 2px var(--light-gray) solid;
 		color: hsl(212, 49%, 27%);
 
 		.plan-name {

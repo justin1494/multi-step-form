@@ -10,7 +10,7 @@ const initialPlans = [
 		title: "Arcade",
 		price: 9,
 		img: <IconArcade />,
-		selected: false,
+		selected: true,
 	},
 	{
 		id: 1,
@@ -39,7 +39,12 @@ const planYearlyAnimate = keyframes`
 
 `;
 
-function FormStepTwo({ yearly, setYearly, setUserInfo, userInfo }) {
+function FormStepTwo({
+	yearly,
+	setYearly,
+	setUserInfo,
+	userInfo,
+}) {
 	const [plans, setPlans] = useState(initialPlans);
 
 	const checkIfSelected = () => {
@@ -48,7 +53,7 @@ function FormStepTwo({ yearly, setYearly, setUserInfo, userInfo }) {
 				if (plan.title === userInfo.plan.title) {
 					return { ...plan, selected: true };
 				}
-				return { ...plan, selected: false };
+				return { ...plan, selected: false};
 			})
 		);
 		return;
