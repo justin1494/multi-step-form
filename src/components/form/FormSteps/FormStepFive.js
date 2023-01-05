@@ -7,7 +7,7 @@ function FormStepFive() {
 		<StyledFormStepFive>
 			<IconThankYou className="icon" />
 			<h1>Thank you!</h1>
-			<div className="subtitle">
+			<div className="step-description">
 				Thanks for confirming your subscription! We hope you have fun
 				using our platform. If you ever need support, please feel free
 				to email us at support@loremgaming.com.
@@ -29,15 +29,12 @@ const StyledFormStepFive = styled.div`
 
 	h1 {
 		margin-bottom: 1rem;
-		color: hsl(213, 96%, 18%);
 	}
-	.subtitle {
-		margin-bottom: 2rem;
+
+	.step-description {
 		text-align: center;
-		color: hsl(231, 11%, 63%);
-		font-size: 16px;
-		font-weight: 400;
 		line-height: 1.5rem;
+		
 	}
 
 `;

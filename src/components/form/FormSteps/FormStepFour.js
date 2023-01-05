@@ -13,7 +13,7 @@ function FormStepFour({ yearly, setFormStep, userInfo}) {
 	return (
 		<StyledFormStepFour>
 			<h1>Finishing up</h1>
-			<p className="subtitle">
+			<p className="step-description">
 				Double-check everything looks OK before confirming.
 			</p>
 			<div className="services">
@@ -52,18 +52,6 @@ function FormStepFour({ yearly, setFormStep, userInfo}) {
 }
 
 const StyledFormStepFour = styled.div`
-	height: 100%;
-
-	h1 {
-		margin-bottom: 0.5rem;
-		color: hsl(213, 96%, 18%);
-	}
-	.subtitle {
-		margin-bottom: 2rem;
-		color: hsl(231, 11%, 63%);
-		font-size: 16px;
-		font-weight: 400;
-	}
 
 	.services {
 		width: 100%;
@@ -72,7 +60,7 @@ const StyledFormStepFour = styled.div`
 		padding: 1.5rem;
 		border-radius: 0.5rem;
 		flex-direction: column;
-		background-color: hsl(230, 75%, 98%);
+		background-color:var(--purple-light);
 	}
 
 	.selected-plan,
@@ -86,7 +74,7 @@ const StyledFormStepFour = styled.div`
 		margin-bottom: 1rem;
 		font-weight: 700;
 		border-bottom: 2px var(--light-gray) solid;
-		color: hsl(212, 49%, 27%);
+		color: var(--marine-blue);
 
 		.plan-name {
 			.name {
@@ -97,9 +85,13 @@ const StyledFormStepFour = styled.div`
 				border: none;
 				background-color: transparent;
 				text-decoration: underline;
-				color: hsl(223, 5%, 74%);
+				color: var(--cool-gray);
 				cursor: pointer;
 			}
+		}
+
+		.plan-price {
+			color: var(--purple);
 		}
 	}
 
@@ -107,11 +99,11 @@ const StyledFormStepFour = styled.div`
 		margin: 0.5rem 0rem;
 
 		.addon-name {
-			color: hsl(223, 5%, 74%);
+			color: var(--cool-gray);
 		}
 		.addon-price {
 			font-weight: 500;
-			color: hsl(212, 49%, 27%);
+			color: var(--purple);
 		}
 	}
 
@@ -120,7 +112,7 @@ const StyledFormStepFour = styled.div`
 		justify-content: space-between;
 		align-items: center;
 		padding: 1.5rem 1rem;
-		color: hsl(223, 5%, 74%);
+		color: var(--cool-gray);
 
 		.summary-price {
 			color: var(--purplish-blue);
@@ -130,7 +122,7 @@ const StyledFormStepFour = styled.div`
 	}
 
 	@media (max-width: 640px) {
-		background-color: #fff;
+		background-color: var(--white);
 		p {
 			margin-bottom: 1rem;
 		}

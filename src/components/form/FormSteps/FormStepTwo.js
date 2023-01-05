@@ -80,7 +80,7 @@ function FormStepTwo({ yearly, setYearly, setUserInfo, userInfo }) {
 	return (
 		<StyledFormStepTwo>
 			<h1>Select Plan</h1>
-			<p className="subtitle">
+			<p className="step-description">
 				You have the option of monthly or yearly billing.
 			</p>
 
@@ -124,19 +124,6 @@ function FormStepTwo({ yearly, setYearly, setUserInfo, userInfo }) {
 }
 
 const StyledFormStepTwo = styled.div`
-	height: 100%;
-
-	h1 {
-		margin-bottom: 0.5rem;
-		color: hsl(213, 96%, 18%);
-	}
-	.subtitle {
-		margin-bottom: 2rem;
-		color: hsl(231, 11%, 63%);
-		font-size: 16px;
-		font-weight: 400;
-	}
-
 	.plans {
 		display: flex;
 		justify-content: space-between;
@@ -149,16 +136,16 @@ const StyledFormStepTwo = styled.div`
 			flex-direction: column;
 			padding: 1rem;
 			border-radius: 0.5rem;
-			border: 1px solid hsl(229, 24%, 87%);
+			border: 1px solid var(--light-gray);
 			cursor: pointer;
 
 			:hover {
-				border: 1px solid hsl(213, 96%, 18%);
+				border: 1px solid var(--purple);
 			}
 		}
 		.selected {
-			background-color: hsl(217, 100%, 97%);
-			border: 1px solid hsl(213, 96%, 18%);
+			background-color: var(--purple-light);
+			border: 1px solid var(--purple);
 		}
 	}
 
@@ -168,18 +155,18 @@ const StyledFormStepTwo = styled.div`
 
 	.plan-title {
 		margin-bottom: 0.2rem;
-		color: hsl(213, 96%, 18%);
+		color: var(--marine-blue);
 		font-weight: 500;
 		font-size: 17px;
 	}
 
 	.plan-price {
-		color: hsl(231, 11%, 63%);
+		color: var(--cool-gray);
 		margin: 0.5rem 0;
 	}
 
 	.plan-yearly {
-		color: hsl(213, 96%, 18%);
+		color: var(--marine-blue);
 		letter-spacing: -0.5px;
 		font-weight: 500;
 		animation: 1s ${planYearlyAnimate} ease-in-out;
@@ -198,14 +185,14 @@ const StyledFormStepTwo = styled.div`
 		align-items: center;
 		justify-content: center;
 		border-radius: 0.5rem;
-		background-color: hsl(217, 100%, 97%);
+		background-color: var(--purple-light);
 
 		p {
 			display: flex;
 			align-items: center;
 			width: 100px;
 			margin: 0 1rem;
-			color: hsl(231, 11%, 63%);
+			color: var(--cool-gray);
 		}
 
 		.monthly {
@@ -213,7 +200,7 @@ const StyledFormStepTwo = styled.div`
 		}
 		.activated {
 			font-weight: 500;
-			color: hsl(213, 96%, 18%) !important;
+			color: var(--marine-blue) !important;
 			transition: color 0.3s;
 		}
 
@@ -224,7 +211,7 @@ const StyledFormStepTwo = styled.div`
 			width: 50px;
 			height: 50%;
 			border-radius: 50px;
-			background-color: hsl(213, 96%, 18%);
+			background-color: var(--marine-blue);
 			cursor: pointer;
 
 			.switch-ball {
@@ -232,7 +219,7 @@ const StyledFormStepTwo = styled.div`
 				margin: 0 0.3rem;
 				aspect-ratio: 1/1;
 				border-radius: 50%;
-				background-color: #fff;
+				background-color: var(--white);
 				transition: all 0.5s;
 			}
 		}
@@ -242,7 +229,7 @@ const StyledFormStepTwo = styled.div`
 	}
 
 	@media (max-width: 640px) {
-		background-color: #fff;
+		background-color: var(--white);
 
 		p {
 			margin-bottom: 1rem;

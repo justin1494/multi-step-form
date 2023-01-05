@@ -10,7 +10,7 @@ function FormMainView({ formStep, setFormStep }) {
 	const [yearly, setYearly] = useState(false);
 	const inputRef = useRef([]);
 	const requiredRef = useRef([]);
-	const mainNavigationRef = useRef()
+	const mainNavigationRef = useRef();
 
 	const [userInfo, setUserInfo] = useState({
 		name: null,
@@ -56,7 +56,10 @@ function FormMainView({ formStep, setFormStep }) {
 		inputRef.current.forEach((input, index) => {
 			if (input.value === "") {
 				requiredRef.current[index].style.display = "block";
+				requiredRef.current[index].nextElementSibling.style.border = "1px solid var(--strawberry-red)"
 				outcome = false;
+			} else {
+				requiredRef.current[index].nextElementSibling.style.border = "1px solid var(--cool-gray)"
 			}
 		});
 		saveInputs();
@@ -69,19 +72,20 @@ function FormMainView({ formStep, setFormStep }) {
 				inputRef.current[1].value
 			)
 		) {
+			requiredRef.current[1].nextElementSibling.style.border = "1px solid var(--cool-gray)"
 			return true;
 		}
 		requiredRef.current[1].innerText = "Enter a valid e-mail";
 		requiredRef.current[1].style.display = "block";
+		requiredRef.current[1].nextElementSibling.style.border = "1px solid var(--strawberry-red)"
 		return false;
 	};
 
 	useEffect(() => {
-	  if (formStep === formSteps.length - 1) {
-		mainNavigationRef.current.style.display = 'none'
-	  }
-	})
-	
+		if (formStep === formSteps.length - 1) {
+			mainNavigationRef.current.style.display = "none";
+		}
+	});
 
 	const formSteps = [
 		<FormStepOne
@@ -152,7 +156,7 @@ const StyledFormMainView = styled.div`
 	.main-form {
 		width: 75%;
 		height: 70%;
-		background-color: white;
+		background-color: var(--white);
 	}
 	.main-navigation {
 		width: 75%;
@@ -168,23 +172,23 @@ const StyledFormMainView = styled.div`
 			font-size: 16px;
 			font-weight: 700;
 			cursor: pointer;
-
-			:disabled {
-				background-color: grey;
-			}
 		}
 		.back-button {
 			width: auto;
 			background: none;
-			color: hsl(231, 11%, 63%);
+			color: var(--cool-gray);
+
+			:hover {
+				color: var(--marine-blue);
+			}
 		}
 		.next-button {
 			margin-left: auto;
-			background-color: hsl(213, 96%, 18%);
-			color: hsl(229, 24%, 87%);
+			background-color: var(--marine-blue);
+			color: var(--light-gray);
 
 			:hover {
-				background-color: hsl(214, 72%, 32%);
+				opacity: 0.85;
 			}
 		}
 	}
@@ -204,7 +208,7 @@ const StyledFormMainView = styled.div`
 				rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 		}
 		.main-navigation {
-			background-color: #fff;
+			background-color: var(--white);
 			width: 100%;
 			padding: 1rem;
 		}

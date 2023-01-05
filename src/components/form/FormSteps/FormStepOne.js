@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-const initialInputs = [
+const inputs = [
 	{
 		id: 1,
 		name: "name",
@@ -29,14 +29,11 @@ const initialInputs = [
 ];
 
 function FormStepOne({ inputRef, requiredRef, userInfo }) {
-	const [inputs, setInputs] = useState(initialInputs);
-
-
 
 	return (
 		<StyledFormStepOne>
 			<h1>Personal info</h1>
-			<p>Please provide your name, email address, and phone number.</p>
+			<p className="step-description">Please provide your name, email address, and phone number.</p>
 			{inputs.map((input, index) => (
 				<div className="input" key={input.id}>
 					<label htmlFor={input.name}>{input.label}</label>
@@ -62,17 +59,6 @@ function FormStepOne({ inputRef, requiredRef, userInfo }) {
 }
 
 const StyledFormStepOne = styled.div`
-	h1 {
-		margin-bottom: 0.5rem;
-		color: hsl(213, 96%, 18%);
-	}
-	p {
-		margin-bottom: 2rem;
-		color: hsl(231, 11%, 63%);
-		font-size: 16px;
-		font-weight: 400;
-	}
-
 	.input {
 		position: relative;
 		margin: 1.5rem 0;
@@ -86,24 +72,32 @@ const StyledFormStepOne = styled.div`
 			right: 0;
 			position: absolute;
 			margin: 0;
-			color: hsl(354, 84%, 57%);
+			color: var(--strawberry-red);
 			font-weight: 500;
 		}
 
 		label {
 			margin-bottom: 0.5rem;
-			color: hsl(213, 96%, 18%);
+			color: var(--marine-blue);
+			font-size: 14px;
+			font-weight: 500;
 		}
 		input {
 			height: 50px;
 			padding-left: 1rem;
-			border: 1px solid hsl(229, 24%, 87%);
+			color: var(--marine-blue);
+			border: 1px solid var(--cool-gray);
 			border-radius: 0.5rem;
 			font-size: 16px;
 			font-weight: 500;
 
+			:focus {
+				outline: none;
+				border: 1px solid var(--purplish-blue);
+			}
+
 			::placeholder {
-				color: hsl(231, 11%, 63%);
+				color: var(--cool-gray);
 			}
 		}
 	}

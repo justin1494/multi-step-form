@@ -86,7 +86,7 @@ function FormStepThree({ yearly, setUserInfo, userInfo }) {
 	return (
 		<StyledFormStepThree>
 			<h1>Pick add-ons</h1>
-			<p className="subtitle">
+			<p className="step-description">
 				Add-ons help enhance your gaming experience.
 			</p>
 
@@ -120,18 +120,6 @@ function FormStepThree({ yearly, setUserInfo, userInfo }) {
 }
 
 const StyledFormStepThree = styled.div`
-	height: 100%;
-
-	h1 {
-		margin-bottom: 0.5rem;
-		color: hsl(213, 96%, 18%);
-	}
-	.subtitle {
-		margin-bottom: 2rem;
-		color: hsl(231, 11%, 63%);
-		font-size: 16px;
-		font-weight: 400;
-	}
 
 	.addons {
 		width: 100%;
@@ -147,17 +135,17 @@ const StyledFormStepThree = styled.div`
 		justify-content: flex-start;
 		align-items: center;
 		border-radius: 0.5rem;
-		border: 1px solid hsl(229, 24%, 87%);
+		border: 1px solid var(--light-gray);
 		cursor: pointer;
 
 		:hover {
-			border: 1px solid hsl(213, 96%, 18%);
+			border: 1px solid var(--purple);
 		}
 	}
 
 	.selected {
-		background-color: hsl(217, 100%, 97%);
-		border: 1px solid hsl(213, 96%, 18%);
+		background-color: var(--purple-light);
+		border: 1px solid var(--purple);
 	}
 
 	.checkbox {
@@ -168,7 +156,7 @@ const StyledFormStepThree = styled.div`
 		justify-content: center;
 		align-items: center;
 		border-radius: 0.2rem;
-		background-color: hsl(244, 100%, 63%);
+		background-color: var(--purplish-blue);
 
 		img {
 			animation: 0.3s ${fadeInAnimation};
@@ -177,22 +165,22 @@ const StyledFormStepThree = styled.div`
 
 	.addon-title {
 		margin-bottom: 0.2rem;
-		color: hsl(213, 96%, 18%);
+		color: var(--marine-blue);
 		font-weight: 500;
 		font-size: 17px;
 	}
 	.addon-subtitle {
-		color: hsl(231, 11%, 63%);
+		color: var(--cool-gray);
 	}
 	.addon-price {
 		margin-left: auto;
 		margin-right: 2rem;
-		color: hsl(244, 43%, 61%);
+		color: var(--purple);
 		font-weight: 500;
 	}
 
 	@media (max-width: 640px) {
-		background-color: #fff;
+		background-color: var(--white);
 		p {
 			margin-bottom: 1rem;
 		}
@@ -206,6 +194,7 @@ const StyledFormStepThree = styled.div`
 		.addon-price {
 			margin-right: 1rem;
 		}
+
 	}
 `;
 
